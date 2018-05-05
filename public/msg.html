@@ -13,7 +13,15 @@
 </head>
 
 <script>
-		var name = localStorage.getItem("name");
+
+var socket = io.connect("http://localhost:8080");
+
+var bt = document.getElementById("send");
+var message = document.getElementById("txt"); 
+var output = document.getElementById("output");
+var handle = "Yash";
+
+	var name = localStorage.getItem("name");
 
 	console.log(name);
 
@@ -60,7 +68,24 @@
 		  // loop through links and match to word spoken
 		 console.log(saidWord);
 
-		 $('input').val(saidWord);
+		
+		 if(saidWord.trim() == "send") {
+		 
+				socket.emit('chat', {
+					message: message.value,
+					handle: handle
+				}); 
+			
+		 } else {
+		 	 $('input').val(saidWord);
+		 }
+
+		 socket.on("chat", function(data) {
+				output.innerHTML = output.innerHTML + "<div class = 'msg'>" + data.message + "</div><br>";
+		});
+
+
+
 
 
 
@@ -88,6 +113,36 @@
 		}
 </script>
 
+<style>
+	input {
+		position: absolute;
+		bottom: -22px;
+		width: 100%;
+		box-sizing: border-box;
+		height: 50px;
+		border: 1px solid #ccc;
+		padding-left: 20px;
+
+	}
+
+	.d {
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		height: 30px;
+		background: #fff;
+	}
+
+	#output {
+		position: absolute;
+		top: 123px;
+		left: 0;
+		width: 100%;
+		height: 69%;
+		background: #fff;
+	}
+</style>
 
 <body>
 <div class="frame">
@@ -97,7 +152,7 @@
 
 
 
-  <input type="text" id = "txt"> 
+  <input placeholder = "Your Message" type="text" id = "txt"> 
 		<button id = "send">Send</button>
 
 		<div id="output"></div>

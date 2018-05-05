@@ -13,5 +13,5 @@ bt.addEventListener("click", function() {
 });
 
 socket.on("chat", function(data) {
-	output.innerHTML = output.innerHTML + data.message + "<br>";
+	output.innerHTML = output.innerHTML + "<div class = 'msg'>" + data.message + "</div><br>";
 });
