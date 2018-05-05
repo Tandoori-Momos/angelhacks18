@@ -6,10 +6,34 @@
 
     <script>	
 
-    var append = 0;
-		var name = localStorage.getItem("name");;
-		console.log(name);
+    window.onload = function() {
 
+
+
+    var tasks = [];
+    
+    var append = 0;
+	var name = localStorage.getItem("name");
+	console.log(name);
+
+	console.log(localStorage.getItem("task"));
+
+	console.log(localStorage.getItem("deadline"));
+
+
+
+	if(localStorage.getItem("task") && localStorage.getItem("deadline")) {
+		
+		var obj = {'time': new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1"), 'task': localStorage.getItem("task"), 'deadline': localStorage.getItem("deadline")};
+
+		tasks.push(obj);
+
+
+		$("ul").append('<li><div class="one" style = "text-transform: capitilize">'+ tasks.length +"."+'</div><div class="two">'+ tasks[0].task +'.<br><br><span><span class="und">Deadline:</span>&nbsp; ' + tasks[0].deadline +'PM</span><div class="button">Done</div></div></li>');
+	
+		append = 1;
+	}
+		
 	var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 
 	var recognition = new SpeechRecognition(); // Rec
@@ -48,7 +72,7 @@
 
 	/* Speech Settings for Playback */
    	
-   	var tasks = [];
+   
 
 	// There are 4 events we can control for the speech
 
@@ -163,8 +187,10 @@
 		}
 			recognition.start();
 		
+		}
 
-			
+	
+				
 
 
 	    </script>

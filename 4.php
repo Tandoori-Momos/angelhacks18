@@ -16,6 +16,7 @@ s
 <script>	
 
 	var name = localStorage.getItem("name");
+
 	console.log(name);
 
 
@@ -32,13 +33,6 @@ s
 		msg: 'Opening your to do list',
 		task: 'open_todo',
 		target: 'todo/'
-	},
-	{
-		id: 2,
-		token: name,
-		msg: 'Someone is calling you',
-		task: 'open_detect',
-		target: 'detection.php'
 	}];
 
 			// new instance of speech recognition
@@ -77,6 +71,48 @@ s
 							}
 						}
 				}
+
+				var first = words[0].toLowerCase();
+		console.log(first);
+
+		if(first == name.toLowerCase()) {
+			for(var i = 0; i < words.length; i++) {
+				for(var j = 0; j < hotwords.length; j++) {
+					var break_p = 0;
+					if(words[i] == hotwords[j] && !break_p) {
+						break_p++;
+						var end_point;
+						
+						if(words.includes("by")) {
+							var deadline = words[words.indexOf("by") + 1];
+							end_point = words.indexOf("by");
+						} else {
+							var deadline = 0;
+							end_point = words.length;
+						}
+						
+						var task = '';
+
+						for(var k  = words.indexOf(hotwords[j])+1; k < end_point; k++) {
+							task += words[k] + ' ';
+						}
+
+						console.log(task + ': ' + deadline);
+
+						var obj = {'time': new Date().toLocaleTimeString().replace("/.*(\d{2}:\d{2}:\d{2}).*/", "$1"), 'task': task, 'deadline': deadline};
+
+						tasks.push(obj);
+
+						console.log(tasks);
+
+
+						localStorage.setItem("task", task);
+						localStorage.setItem("deadline", deadline);
+
+					}
+				}
+			}
+		} 
 				}
 
 		// speech error handling
