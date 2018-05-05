@@ -3,13 +3,14 @@ const express = require("express");
 var socket = require("socket.io");
 
 const app = express();
+const port = 80;
 
 app.use(express.static('public'));
 
 
 
-var server = app.listen(8080, function() {
-	console.log("Listening to port 8080");
+var server = app.listen(port, function() {
+	console.log(`Listening to port ${port}`);
 });
 
 
