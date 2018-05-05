@@ -87,11 +87,8 @@ body{
 }
 .hd span{
 
-	background: -webkit-linear-gradient(45deg, #f857a6, #ff5858);
-      background: linear-gradient(45deg, #f857a6, #ff5858);
-      -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-font-smoothing: antialiased;		
+	
+  color: #29C5FF;		
 }
 
 .line{
@@ -156,7 +153,7 @@ body{
 	width: 60px;
 	height: 30px;
 	border-radius: 12px;
-	border: 2px solid #F73859;
+	border: 2px solid #19B5FE;
 	border-style: solid;
 	z-index: 114;
 	text-align: center;
@@ -165,11 +162,8 @@ body{
 	font-size: 10pt;
 	transform: translateX(-50%);
 	
-	background: -webkit-linear-gradient(45deg, #f857a6, #ff5858);
-      background: linear-gradient(45deg, #f857a6, #ff5858);
-      -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-font-smoothing: antialiased;	
+	color: #19B5FE;	
   font-weight: 500;
   cursor: pointer;
+
 }
