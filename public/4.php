@@ -9,8 +9,6 @@
 
 </head>
 
-s
-
 <body>
 
 <script>	
@@ -25,7 +23,7 @@ s
 		token: 'scan',
 		msg: 'Opening camera for scanning',
 		task: 'open_ocr',
-		target: 'scan.php'
+		target: 'scan.html'
 	}, 
 	{
 		id: 1,
@@ -39,7 +37,7 @@ s
 		token: 'message',
 		msg: 'Opening messaging',
 		task: 'open_msg',
-		target: 'msg.php'
+		target: 'msg.html'
 	}];
 
 			// new instance of speech recognition
@@ -124,7 +122,7 @@ s
 				if(words[i] == name) {
 					var msg = new SpeechSynthesisUtterance("Your name has been detected");
 					window.speechSynthesis.speak(msg);
-					window.location.href = "detection.php";
+					window.location.href = "detection.html";
 				}
 			}
 		}
